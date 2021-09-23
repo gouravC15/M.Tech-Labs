@@ -1,0 +1,59 @@
+clear all;
+
+A=[6	5	6	6	7	7	6	6; 
+   6	7	6	7	5	5	4	7;
+   6	6	4	4	3	2	5	6;
+   5	4	5	4	2	3	4	6;
+   0	3	2	3	3	2	4	7;
+   0	0	0	0	2	2	5	6;
+   1	1	0	1	0	3	4	4;
+   1	0	1	0	2	3	5	4;]
+
+[r,c]=size(A);
+
+imshow(A);
+S=[];
+k=1;
+t=3
+
+for i=1:2
+    for j=1:2
+        S(:,:,k)=A(((i-1)*4+1):4*i,((j-1)*4+1):4*j);
+        k=k+1;
+    end
+end
+disp(S);
+D=[];
+for ele=1:4
+    difference=(max(max(S(:,:,ele))) - min(min(S(:,:,ele))));
+    disp('Difference for region:');
+    disp(ele); disp('=');
+    disp(difference);
+end
+
+S2=[];
+k2=1;
+difference2=0;
+for i2=1:2
+    for j2=1:2
+        S2(:,:,k2)=A(((i2-1)*4+1):4*i2,((j2-1)*4+1):4*j2);
+        for ele=1:4
+            difference2=(max(max(S2(:,:,k2))) - min(min(S2(:,:,k2))));
+        if difference2>3
+            for i2=1:1
+                for j2=1:1
+                    S2(:,:,k2)=A(((i2-1)*2+1):2*i2,((j2-1)*2+1):2*j2);
+                end
+            end
+        end
+        k2=k2+1;
+        end
+    end
+end
+disp(S)
+
+
+%display maximum in matrix disp(max(max(split(:,:,3))))
+
+%For splitting further
+
