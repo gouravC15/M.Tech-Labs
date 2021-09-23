@@ -1,0 +1,77 @@
+clear all;
+
+A=[6	5	6	6	7	7	6	6; 
+   6	7	6	7	5	5	4	7;
+   6	6	4	4	3	2	5	6;
+   5	4	5	4	2	3	4	6;
+   0	3	2	3	3	2	4	7;
+   0	0	0	0	2	2	5	6;
+   1	1	0	1	0	3	4	4;
+   1	0	1	0	2	3	5	4;]
+
+X = zeros(8);
+
+C = mat2cell(A, [4 4], [4 4]);
+%splitted region 1
+A1=C{1,1};
+A2=C{1,2};
+A3=C{2,1};
+A4=C{2,2};
+%matrix{row_num,col_num}.to diplay splitted matrix
+
+difference1=max(max(A1))-min(min(A1));
+difference2=max(max(A2))-min(min(A2));
+difference3=max(max(A3))-min(min(A3));
+difference4=max(max(A4))-min(min(A4));
+disp('Difference of A1, A2, A3, A4');
+disp(difference1);
+disp(difference2);
+disp(difference3);
+disp(difference4);
+
+%Splitted A2 as diff>3
+A2=mat2cell(A2, [2 2], [2 2]);
+A21=A2{1,1};
+A22=A2{1,2};
+A23=A2{2,1};
+A24=A2{2,2};
+
+%Splitted A4 as diff>3
+A4=mat2cell(A4, [2 2], [2 2]);
+A41=A4{1,1};
+A42=A4{1,2};
+A43=A4{2,1};
+A44=A4{2,2};
+
+DA2='Diference for splitted A2';
+differenceA21=max(max(A21))-min(min(A21));
+differenceA22=max(max(A22))-min(min(A22));
+differenceA23=max(max(A23))-min(min(A23));
+differenceA24=max(max(A24))-min(min(A24));
+disp(DA2);
+disp(differenceA21);
+disp(differenceA22);
+disp(differenceA23);
+disp(differenceA24);
+
+DA4='Diference for splitted A4';
+differenceA41=max(max(A41))-min(min(A41));
+differenceA42=max(max(A42))-min(min(A42));
+differenceA43=max(max(A43))-min(min(A43));
+differenceA44=max(max(A44))-min(min(A44));
+disp(DA4);
+disp(differenceA41);
+disp(differenceA42);
+disp(differenceA43);
+disp(differenceA44);
+%No further splitting as diff <=3
+%Merging
+
+
+%to check if adjecent regions should merge
+%take max of r1 - min of adj region <= threshold OR min of r1 - max of adj region <= threshold
+
+
+
+
+
